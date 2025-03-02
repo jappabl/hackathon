@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('financial-info');
-    const resultsSection = document.getElementById('results');
     const chartsDiv = document.getElementById('charts');
     const budgetPlansDiv = document.getElementById('budget-plans');
 
@@ -59,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function displayResults(budgetPlan) {
         // Clear previous results
-        chartsDiv.innerHTML = '<canvas id="budgetChart"></canvas>';
+        chartsDiv.innerHTML = '<canvas id="budgetChart" width="400" height="400"></canvas>'; // Smaller chart size
         budgetPlansDiv.innerHTML = '';
-
+    
         // Display budget plan
         const planHTML = `
             <h3>📊 Your Budget Breakdown</h3>
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
         `;
         budgetPlansDiv.innerHTML = planHTML;
-
+    
         // Generate chart
         const ctx = document.getElementById('budgetChart').getContext('2d');
         new Chart(ctx, {
@@ -98,11 +97,22 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Allow custom sizing
                 plugins: {
-                    legend: { position: 'top' },
+                    legend: {
+                        position: 'bottom', // Move legend to the bottom
+                        labels: {
+                            font: {
+                                size: 14, // Increase legend font size
+                            }
+                        }
+                    },
                     title: {
                         display: true,
-                        text: 'Budget Breakdown'
+                        text: 'Budget Breakdown',
+                        font: {
+                            size: 18, // Increase title font size
+                        }
                     }
                 }
             }
