@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const chartsDiv = document.getElementById('charts');
     const budgetPlansDiv = document.getElementById('budget-plans');
 
+    console.log('Script loaded!'); // Debugging: Check if script is running
+
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent form submission
+        console.log('Form submitted!'); // Debugging: Check if form submission is triggered
 
         // Get user inputs
         const monthlyIncome = parseFloat(document.getElementById('monthly-income').value);
@@ -13,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const rent = parseFloat(document.getElementById('rent').value);
         const transportation = parseFloat(document.getElementById('transportation').value);
         const miscellaneous = parseFloat(document.getElementById('miscellaneous').value);
+
+        console.log('Inputs:', { monthlyIncome, foodCosts, rent, transportation, miscellaneous }); // Debugging: Check input values
 
         // Validate inputs
         if (
@@ -40,26 +45,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 transportation: transportation,
                 miscellaneous: miscellaneous
             },
-            advice: getBudgetAdvice(savings)
+            advice: getBudgetAdvice(savings, foodCosts, transportation, miscellaneous)
         };
+
+        console.log('Budget Plan:', budgetPlan); // Debugging: Check budget plan object
 
         // Display results
         displayResults(budgetPlan);
     });
 
-    function getBudgetAdvice(savings) {
+    function getBudgetAdvice(savings, foodCosts, transportation, miscellaneous) {
+        let advice = '';
+
+        // General advice based on savings
         if (savings > 0) {
-            return "Great job! You're saving money. Consider investing or adding to your emergency fund.";
+            advice = "Great job! You're saving money. Consider investing or adding to your emergency fund.";
         } else if (savings === 0) {
-            return "You're breaking even. Look for ways to reduce expenses or increase income.";
+            advice = "You're breaking even. Look for ways to reduce expenses or increase income.";
         } else {
-            return "You're spending more than you earn. Review your expenses and prioritize needs over wants.";
+            advice = "You're spending more than you earn. Review your expenses and prioritize needs over wants.";
         }
+
+        // Specific advice for overspending on categories
+        if (savings < 0) {
+            if (foodCosts > 400) {
+                advice += " Maybe cut down on food expenses by cooking at home or meal prepping.";
+            }
+            if (transportation > 1000) {
+                advice += " Consider reducing transportation costs by using public transit or carpooling.";
+            }
+            if (miscellaneous > 300) {
+                advice += " Try to limit miscellaneous spending by tracking non-essential purchases.";
+            }
+        }
+
+        return advice;
     }
 
     function displayResults(budgetPlan) {
         // Clear previous results
-        chartsDiv.innerHTML = '<canvas id="budgetChart"></canvas>';
+        chartsDiv.innerHTML = '<canvas id="budgetChart" width="400" height="400"></canvas>'; // Smaller chart size
         budgetPlansDiv.innerHTML = '';
 
         // Display budget plan
@@ -78,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
         `;
         budgetPlansDiv.innerHTML = planHTML;
+
+        console.log('Results displayed!'); // Debugging: Check if results are displayed
 
         // Generate chart
         const ctx = document.getElementById('budgetChart').getContext('2d');
@@ -98,11 +125,24 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Allow custom sizing
                 plugins: {
-                    legend: { position: 'top' },
+                    legend: {
+                        position: 'bottom', // Move legend to the bottom
+                        labels: {
+                            font: {
+                                size: 14, // Increase legend font size
+                                family: "'Sono', sans-serif" // Apply Sono font to legend
+                            }
+                        }
+                    },
                     title: {
                         display: true,
-                        text: 'Budget Breakdown'
+                        text: 'Budget Breakdown',
+                        font: {
+                            size: 18, // Increase title font size
+                            family: "'Sono', sans-serif" // Apply Sono font to title
+                        }
                     }
                 }
             }
