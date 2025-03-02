@@ -1,1 +1,54 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planning Website</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Personal Budget Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="#entertainment">Entertainment</a></li>
+                <li><a href="#useful-spending">Useful Spending</a></li>
+                <li><a href="#saving-money">Saving Money</a></li>
+                <li><a href="#for-students">For Students</a></li>
+                <li><a href="#current-priorities">Current Priorities</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="user-input">
+        <h2>Input Your Financial Information</h2>
+        <form id="financial-info">
+            <label for="monthly-income">Monthly Income:</label>
+            <input type="number" id="monthly-income" name="monthly-income" required>
+            
+            <label for="usual-spending">Usual Spending:</label>
+            <input type="number" id="usual-spending" name="usual-spending" required>
+            
+            <button type="submit">Calculate Budget</button>
+        </form>
+    </section>
+
+    <section id="results">
+        <h2>Your Budget Plan</h2>
+        <div id="charts">
+            <!-- Charts will be generated here -->
+        </div>
+        <div id="budget-plans">
+            <!-- Budget plans will be displayed here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>Need help? Contact us!</p>
+    </footer>
+
+    <script>
+        // JavaScript for handling form submission, generating charts, etc.
+        // This is a placeholder for actual implementation.
+    </script>
+</body>
+</html>
