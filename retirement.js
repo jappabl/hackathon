@@ -37,21 +37,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const yearsToRetirement = retirementAge - currentAge;
 
         // Calculate total savings at retirement
-        const totalSavings = currentSavings + (monthlySavings * 12 * yearsToRetirement);
+        const totalSavingsAtRetirement = currentSavings + (monthlySavings * 12 * yearsToRetirement);
 
-        // Calculate passive income at retirement
-        const totalPassiveIncome = passiveIncome * 12 * yearsToRetirement;
+        // Calculate if the user is on track (based on savings at retirement age)
+        const isOnTrack = totalSavingsAtRetirement >= expectedSavings;
 
-        // Calculate if the user is on track
-        const isOnTrack = totalSavings + totalPassiveIncome >= expectedSavings;
-
-        // Calculate savings growth over time (including post-retirement)
+        // Calculate savings growth over time (up to retirement age + 10 years)
         const savingsOverTime = [];
-        const expectedSavingsOverTime = [];
         let savings = currentSavings;
-        for (let i = 0; i <= yearsToRetirement + 10; i++) { // Extend 10 years beyond retirement
+        for (let i = 0; i <= yearsToRetirement + 10; i++) {
             savingsOverTime.push(savings);
-            expectedSavingsOverTime.push(expectedSavings);
 
             if (i < yearsToRetirement) {
                 savings += monthlySavings * 12; // Add yearly savings before retirement
@@ -67,18 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
             retirementAge,
             monthlySavings,
             passiveIncome,
-            totalSavings,
-            totalPassiveIncome,
+            totalSavingsAtRetirement,
             isOnTrack,
             savingsOverTime,
-            expectedSavingsOverTime,
             yearsToRetirement
         };
     }
 
     function displayResults(retirementPlan) {
         // Clear previous results
-        retirementCharts.innerHTML = '<canvas id="retirementChart" width="400" height="300"></canvas>'; // Set smaller width and height
+        retirementCharts.innerHTML = '<canvas id="retirementChart" width="300" height="300"></canvas>'; // Smaller and skinnier graph
         retirementDetails.innerHTML = '';
 
         // Display retirement details
@@ -90,8 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <p><strong>Retirement Age:</strong> ${retirementPlan.retirementAge}</p>
             <p><strong>Monthly Savings:</strong> $${retirementPlan.monthlySavings.toFixed(2)}</p>
             <p><strong>Passive Income:</strong> $${retirementPlan.passiveIncome.toFixed(2)}/month</p>
-            <p><strong>Total Savings at Retirement:</strong> $${retirementPlan.totalSavings.toFixed(2)}</p>
-            <p><strong>Total Passive Income at Retirement:</strong> $${retirementPlan.totalPassiveIncome.toFixed(2)}</p>
+            <p><strong>Total Savings at Retirement:</strong> $${retirementPlan.totalSavingsAtRetirement.toFixed(2)}</p>
             <p><strong>On Track?:</strong> ${retirementPlan.isOnTrack ? '✅ Yes' : '❌ No'}</p>
         `;
         retirementDetails.innerHTML = detailsHTML;
@@ -113,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         label: 'Expected Savings Goal ($)',
-                        data: retirementPlan.expectedSavingsOverTime, // Y-axis: Expected savings goal
+                        data: Array(retirementPlan.yearsToRetirement + 11).fill(retirementPlan.expectedSavings), // Y-axis: Expected savings goal
                         borderColor: '#FF6384', // Line color
                         borderDash: [5, 5], // Dashed line
                         borderWidth: 2,
@@ -124,6 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false, // Allow custom sizing
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                        bottom: 20
+                    }
+                },
                 plugins: {
                     legend: {
                         position: 'bottom',
