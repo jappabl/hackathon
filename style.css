@@ -1,23 +1,24 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #FDF6F0;
+    font-family: 'Amiko', 'Zain', 'Sono', 'Roto', sans-serif;
+    background-color: #EEEBE7;
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #3D3A4E;
+    color: #1E1D22;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiko:wght@400;700&family=Zain:wght@400;700&family=Sono:wght@300;400;700&family=Roto:wght@400;700&display=swap');
 
 header {
     background-color: transparent;
     padding: 40px 0;
     font-size: 2.5em;
     font-weight: 700;
-    color: #3D3A4E;
+    color: #1E3753;
 }
 
 nav ul {
@@ -29,14 +30,40 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #8C7EAE;
+    color: #7088A4;
     font-size: 1.2em;
     font-weight: 500;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #5D4E8E;
+    color: #1E3753;
+}
+
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #B2C5DB;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #1E3753;
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #1E1D22;
 }
 
 section {
@@ -64,18 +91,18 @@ form {
 
 input {
     padding: 15px;
-    border: 2px solid #D5C8E1;
+    border: 2px solid #7088A4;
     border-radius: 15px;
     width: 280px;
-    background: #FAF5FF;
+    background: #F5F7FA;
     font-size: 1em;
     text-align: center;
-    color: #3D3A4E;
+    color: #1E3753;
 }
 
 button {
     padding: 15px 35px;
-    background-color: #8C7EAE;
+    background-color: #7088A4;
     color: white;
     font-size: 1.2em;
     font-weight: 600;
@@ -83,16 +110,16 @@ button {
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0px 5px 15px rgba(140, 126, 174, 0.3);
+    box-shadow: 0px 5px 15px rgba(112, 136, 164, 0.3);
 }
 
 button:hover {
-    background-color: #5D4E8E;
+    background-color: #1E3753;
     transform: translateY(-3px);
 }
 
 #results {
-    background-color: #FAF5FF;
+    background-color: #F5F7FA;
     padding: 50px;
     border-radius: 20px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -101,7 +128,7 @@ button:hover {
 
 footer {
     background-color: transparent;
-    color: #8C7EAE;
+    color: #7088A4;
     padding: 20px;
     font-size: 1em;
 }
