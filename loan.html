@@ -18,12 +18,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="loan.html">💸 Loans</a></li>
-                <li><a href="#entertainment">🎉 Entertainment</a></li>
-                <li><a href="#useful-spending">💡 Useful Spending</a></li>
-                <li><a href="#saving-money">💰 Saving Money</a></li>
-                <li><a href="#for-students">📚 For Students</a></li>
-                <li><a href="#current-priorities">✅ Current Priorities</a></li>
+                <li><a href="loans.html">💸 Loans</a></li>
+                <li><a href="retirement.html">🏖️ Retirement</a></li>
             </ul>
         </nav>
 
@@ -38,6 +34,14 @@
 
                 <label for="interest-rate">Interest Rate (%):</label>
                 <input type="number" id="interest-rate" name="interest-rate" step="0.01" required>
+
+                <label for="interest-cycle">Interest Cycle:</label>
+                <select id="interest-cycle" name="interest-cycle" required>
+                    <option value="12">Monthly</option>
+                    <option value="4">Quarterly</option>
+                    <option value="2">Semi-Annually</option>
+                    <option value="1">Annually</option>
+                </select>
 
                 <label for="loan-amount">Loan Amount ($):</label>
                 <input type="number" id="loan-amount" name="loan-amount" required>
@@ -58,8 +62,6 @@
         <p>💌 Need help? Contact us!</p>
     </footer>
 
-    <script src = "loan.js">
-        
-    </script>
+    <script src="loans.js"></script>
 </body>
 </html>

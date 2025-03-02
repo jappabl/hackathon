@@ -1,5 +1,5 @@
 body {
-    font-family: 'Amiko', 'Noto', 'Nunito', sans-serif; /* Using your chosen fonts */
+    font-family: 'Sono', sans-serif; /* Using Sono font globally */
     background-color: #EEEBE7; /* Light background */
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ header {
 header h1 {
     font-size: 3rem;
     margin: 0;
-    font-family: 'Poppins', sans-serif; /* Use Poppins for title */
+    font-family: 'Sono', sans-serif; /* Apply font to header title */
 }
 
 nav ul {
@@ -80,7 +80,7 @@ input {
     width: 200px;
     border: 1px solid #7088A4; /* Light blue border */
     border-radius: 5px;
-    font-family: 'Noto', monospace; /* Monospace font */
+    font-family: 'Sono', monospace; /* Monospace font */
     font-size: 1rem;
 }
 
@@ -91,7 +91,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Noto', monospace;
+    font-family: 'Sono', monospace;
     transition: background 0.3s;
     width: 220px;
 }

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get user inputs
         const interestType = document.getElementById('interest-type').value;
         const interestRate = parseFloat(document.getElementById('interest-rate').value);
+        const interestCycle = parseFloat(document.getElementById('interest-cycle').value);
         const loanAmount = parseFloat(document.getElementById('loan-amount').value);
         const payoffPeriod = parseFloat(document.getElementById('payoff-period').value);
 
@@ -21,22 +22,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Calculate monthly payment
-        const monthlyPayment = calculateMonthlyPayment(interestType, interestRate, loanAmount, payoffPeriod);
+        const monthlyPayment = calculateMonthlyPayment(interestType, interestRate, interestCycle, loanAmount, payoffPeriod);
 
         // Display results
         displayResults(monthlyPayment, loanAmount, payoffPeriod);
     });
 
-    function calculateMonthlyPayment(interestType, interestRate, loanAmount, payoffPeriod) {
-        const monthlyInterestRate = interestRate / 100 / 12; // Convert annual rate to monthly
+    function calculateMonthlyPayment(interestType, interestRate, interestCycle, loanAmount, payoffPeriod) {
+        // Convert annual interest rate to the selected cycle
+        const cycleInterestRate = interestRate / 100 / interestCycle;
+
         if (interestType === 'simple') {
             // Simple interest formula: Total = P + (P * r * t)
-            const totalAmount = loanAmount + (loanAmount * monthlyInterestRate * payoffPeriod);
+            const totalAmount = loanAmount + (loanAmount * cycleInterestRate * payoffPeriod);
             return totalAmount / payoffPeriod; // Monthly payment
         } else {
             // Compound interest formula: Monthly Payment = [P * r * (1 + r)^n] / [(1 + r)^n - 1]
-            const numerator = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, payoffPeriod);
-            const denominator = Math.pow(1 + monthlyInterestRate, payoffPeriod) - 1;
+            const numerator = loanAmount * cycleInterestRate * Math.pow(1 + cycleInterestRate, payoffPeriod);
+            const denominator = Math.pow(1 + cycleInterestRate, payoffPeriod) - 1;
             return numerator / denominator; // Monthly payment
         }
     }
