@@ -82,6 +82,23 @@ document.addEventListener('DOMContentLoaded', function () {
         return advice;
     }
 
+    // Function to handle tab transitions with animations
+function navigateToPage(url) {
+    document.body.classList.add('fade-out'); // Fade out the current page
+    setTimeout(() => {
+        window.location.href = url; // Navigate to the new page after the fade-out
+    }, 100); // Match the duration of the CSS transition
+}
+
+// Add event listeners to navigation links
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        const url = link.getAttribute('href'); // Get the target URL
+        navigateToPage(url); // Navigate with animation
+    });
+});
+
     function displayResults(budgetPlan) {
         // Clear previous results
         chartsDiv.innerHTML = '<canvas id="budgetChart" width="400" height="400"></canvas>'; // Smaller chart size
@@ -147,5 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
+        setTimeout(() => {
+            document.getElementById('results').classList.add('visible');
+        }, 100); // Small delay to ensure the DOM updates
     }
 });
