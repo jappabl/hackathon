@@ -1,17 +1,20 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #EEEBE7;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAFAFA;
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #1E1D22;
+    color: #333;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
 header {
-    background-color: #1E3753;
-    color: #EEEBE7;
+    background-color: #FFFFFF;
     padding: 20px;
     text-align: center;
+    font-size: 1.5em;
+    border-bottom: 1px solid #E0E0E0;
 }
 
 nav ul {
@@ -28,69 +31,80 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #B2C5DB;
-    font-weight: bold;
+    color: #555;
+    font-size: 1.2em;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #EEEBE7;
+    color: #1E3753;
 }
 
 section {
-    background: white;
-    margin: 20px auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    margin: 30px auto;
+    padding: 30px;
+    width: 70%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
-    color: #1E3753;
+    color: #333;
+    font-size: 1.8em;
+    font-weight: 600;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 }
 
 input {
-    padding: 10px;
-    border: 1px solid #7088A4;
-    border-radius: 5px;
-    width: 200px;
+    padding: 12px;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    width: 250px;
+    background: #FAFAFA;
+    font-size: 1em;
+    text-align: center;
+    color: #333;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #7088A4;
+    padding: 12px 25px;
+    background-color: #1E3753;
     color: white;
+    font-size: 1em;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #1E3753;
+    background-color: #14263F;
+    transform: scale(1.02);
 }
 
 #results {
-    background-color: #B2C5DB;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #FAFAFA;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 footer {
-    background-color: #1E1D22;
-    color: #EEEBE7;
-    padding: 10px;
+    background-color: #FFFFFF;
+    color: #555;
+    padding: 12px;
     position: relative;
     bottom: 0;
     width: 100%;
+    font-size: 0.9em;
+    border-top: 1px solid #E0E0E0;
 }
