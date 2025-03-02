@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Planner</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Retirement Planner 🏖️</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="loan.html">💸 Loans</a></li>
+                <li><a href="retirement.html">🏖️ Retirement</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="retirement-input">
+        <h2>Plan Your Retirement</h2>
+        <form id="retirement-form">
+            <label for="current-age">Current Age:</label>
+            <input type="number" id="current-age" name="current-age" required>
+
+            <label for="current-savings">Current Savings ($):</label>
+            <input type="number" id="current-savings" name="current-savings" required>
+
+            <label for="expected-savings">Expected Savings ($):</label>
+            <p class="note">💡 Guidelines recommend saving 10-12x your current salary by retirement.</p>
+            <input type="number" id="expected-savings" name="expected-savings" required>
+
+            <label for="retirement-age">Expected Retirement Age:</label>
+            <input type="number" id="retirement-age" name="retirement-age" required>
+
+            <label for="monthly-savings">Monthly Savings ($):</label>
+            <input type="number" id="monthly-savings" name="monthly-savings" required>
+
+            <label for="passive-income">Passive Income ($/month):</label>
+            <input type="number" id="passive-income" name="passive-income" required>
+            <p class="note">💡 Passive income is only used for calculations after retirement age.</p>
+
+            <button type="submit">Calculate Retirement Plan</button>
+        </form>
+    </section>
+
+    <section id="retirement-results">
+        <h2>Your Retirement Plan 📊</h2>
+        <div id="retirement-charts">
+            <!-- Charts will be generated here -->
+        </div>
+        <div id="retirement-details">
+            <!-- Retirement details will be displayed here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>💌 Need help? Contact us!</p>
+    </footer>
+
+    <script src="retirement.js"></script>
+</body>
+</html>
