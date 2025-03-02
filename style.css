@@ -1,17 +1,23 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #EEEBE7;
+    font-family: 'Montserrat', 'Nunito', sans-serif;
+    background-color: #FDF6F0;
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #1E1D22;
+    color: #3D3A4E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 header {
-    background-color: #1E3753;
-    color: #EEEBE7;
-    padding: 20px;
-    text-align: center;
+    background-color: transparent;
+    padding: 20px 0;
+    font-size: 2em;
+    font-weight: 700;
+    color: #5B4B8A;
 }
 
 nav ul {
@@ -22,33 +28,42 @@ nav ul {
     gap: 20px;
 }
 
-nav ul li {
-    display: inline;
-}
-
 nav ul li a {
     text-decoration: none;
-    color: #B2C5DB;
-    font-weight: bold;
+    color: #A192C6;
+    font-size: 1.1em;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #EEEBE7;
+    color: #6E5D99;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    height: 70vh;
 }
 
 section {
     background: white;
-    margin: 20px auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #1E3753;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #5B4B8A;
 }
 
 form {
@@ -60,37 +75,45 @@ form {
 
 input {
     padding: 10px;
-    border: 1px solid #7088A4;
-    border-radius: 5px;
-    width: 200px;
+    border: 2px solid #D5C8E1;
+    border-radius: 10px;
+    width: 220px;
+    background: #FFF8F6;
+    font-size: 0.9em;
+    text-align: center;
+    color: #5B4B8A;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #7088A4;
+    padding: 10px 25px;
+    background-color: #A192C6;
     color: white;
+    font-size: 1em;
+    font-weight: 600;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0px 3px 10px rgba(140, 126, 174, 0.3);
 }
 
 button:hover {
-    background-color: #1E3753;
+    background-color: #6E5D99;
+    transform: translateY(-2px);
 }
 
 #results {
-    background-color: #B2C5DB;
+    background-color: #FFF0F6;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    background-color: #1E1D22;
-    color: #EEEBE7;
+    background-color: transparent;
+    color: #A192C6;
     padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    font-size: 0.9em;
+    position: absolute;
+    bottom: 10px;
 }
