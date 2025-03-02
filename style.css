@@ -1,110 +1,107 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #FAFAFA;
+    background-color: #FDF6F0;
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #333;
+    color: #3D3A4E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 header {
-    background-color: #FFFFFF;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.5em;
-    border-bottom: 1px solid #E0E0E0;
+    background-color: transparent;
+    padding: 40px 0;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #3D3A4E;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
+    gap: 40px;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #555;
+    color: #8C7EAE;
     font-size: 1.2em;
     font-weight: 500;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #1E3753;
+    color: #5D4E8E;
 }
 
 section {
-    background: #FFFFFF;
-    margin: 30px auto;
-    padding: 30px;
-    width: 70%;
+    background: white;
+    width: 60%;
     max-width: 900px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #333;
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
 }
 
 input {
-    padding: 12px;
-    border: 1px solid #CCC;
-    border-radius: 8px;
-    width: 250px;
-    background: #FAFAFA;
+    padding: 15px;
+    border: 2px solid #D5C8E1;
+    border-radius: 15px;
+    width: 280px;
+    background: #FAF5FF;
     font-size: 1em;
     text-align: center;
-    color: #333;
+    color: #3D3A4E;
 }
 
 button {
-    padding: 12px 25px;
-    background-color: #1E3753;
+    padding: 15px 35px;
+    background-color: #8C7EAE;
     color: white;
-    font-size: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: all 0.3s;
+    box-shadow: 0px 5px 15px rgba(140, 126, 174, 0.3);
 }
 
 button:hover {
-    background-color: #14263F;
-    transform: scale(1.02);
+    background-color: #5D4E8E;
+    transform: translateY(-3px);
 }
 
 #results {
-    background-color: #FAFAFA;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: #FAF5FF;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 
 footer {
-    background-color: #FFFFFF;
-    color: #555;
-    padding: 12px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    font-size: 0.9em;
-    border-top: 1px solid #E0E0E0;
+    background-color: transparent;
+    color: #8C7EAE;
+    padding: 20px;
+    font-size: 1em;
 }
