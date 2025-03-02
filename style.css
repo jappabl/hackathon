@@ -1,22 +1,23 @@
 body {
-    font-family: 'Sono', sans-serif;
-    background-color: #EEEBE7;
+    font-family: 'Sono', sans-serif; /* Using Sono font globally */
+    background-color: #EEEBE7; /* Light background */
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #1E1D22;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: #1E1D22; /* Dark text */
 }
 
 header {
-    background-color: #1E3753;
-    color: #EEEBE7;
+    background-color: #1E3753; /* Deep blue background for header */
+    color: #EEEBE7; /* Light text color */
     padding: 20px 0;
     text-align: center;
+}
+
+header h1 {
     font-size: 3rem;
-    font-weight: bold;
+    margin: 0;
+    font-family: 'Sono', sans-serif; /* Apply font to header title */
 }
 
 nav ul {
@@ -28,42 +29,38 @@ nav ul {
     margin-top: 20px;
 }
 
+nav ul li {
+    display: inline;
+}
+
 nav ul li a {
     text-decoration: none;
-    color: #B2C5DB;
+    color: #B2C5DB; /* Soft blue for links */
     font-weight: bold;
     transition: color 0.3s;
-    font-size: 1.2em;
 }
 
 nav ul li a:hover {
-    color: #EEEBE7;
+    color: #EEEBE7; /* Light text color on hover */
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
+#user-input {
+    background-color: #B2C5DB; /* Light blue background for the input section */
     padding: 20px;
-}
-
-.content {
-    background: white;
-    width: 100%;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    font-size: 1.8em;
-    font-weight: 600;
-    margin-bottom: 15px;
+    color: #1E3753; /* Dark blue color for headings */
+}
+
+h3 {
     color: #1E3753;
+    margin-top: 20px;
 }
 
 form {
@@ -75,76 +72,59 @@ form {
 
 label {
     font-size: 1rem;
-    font-weight: 500;
     color: #1E3753;
 }
 
-input, select {
+input {
     padding: 12px;
-    border: 1px solid #7088A4;
-    border-radius: 10px;
-    width: 250px;
-    background: #F5F5F5;
+    width: 200px;
+    border: 1px solid #7088A4; /* Light blue border */
+    border-radius: 5px;
+    font-family: 'Sono', monospace; /* Monospace font */
     font-size: 1rem;
-    text-align: center;
-    color: #1E3753;
-    font-family: 'Sono', monospace;
 }
 
 button {
-    padding: 12px 30px;
-    background-color: #7088A4;
+    padding: 10px 20px;
+    background-color: #7088A4; /* Light blue button */
     color: white;
-    font-size: 1.1em;
-    font-weight: 600;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0px 3px 10px rgba(112, 136, 164, 0.3);
+    font-family: 'Sono', monospace;
+    transition: background 0.3s;
+    width: 220px;
 }
 
 button:hover {
-    background-color: #1E3753;
-    transform: translateY(-2px);
+    background-color: #1E3753; /* Darker blue on hover */
 }
 
-#loan-results {
-    background-color: #B2C5DB;
+#results {
+    background-color: #B2C5DB; /* Light blue background for results */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    width: 100%;
-    max-width: 500px;
 }
 
-.loan-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-    padding: 20px;
+#charts {
+    text-align: center;
+    margin: 20px 0;
 }
 
-.loan-form {
-    background: white;
-    width: 100%;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#budget-plans {
+    margin-top: 20px;
+    color: #1E3753;
+    font-size: 1.1rem;
 }
 
 footer {
-    background-color: #1E1D22;
-    color: #EEEBE7;
-    padding: 15px;
-    font-size: 1em;
-    margin-top: 20px;
+    background-color: #1E1D22; /* Dark footer background */
+    color: #EEEBE7; /* Light footer text */
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
