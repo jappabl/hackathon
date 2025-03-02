@@ -1,58 +1,77 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
+
     const form = document.getElementById('retirement-form');
     const retirementResults = document.getElementById('retirement-results');
     const retirementCharts = document.getElementById('retirement-charts');
     const retirementDetails = document.getElementById('retirement-details');
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission
+    // Navigation handling
+    function navigateToPage(url) {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = url;
+        }, 300);
+    }
 
-        // Get user inputs
-        const currentAge = parseFloat(document.getElementById('current-age').value);
-        const currentSavings = parseFloat(document.getElementById('current-savings').value);
-        const expectedSavings = parseFloat(document.getElementById('expected-savings').value);
-        const retirementAge = parseFloat(document.getElementById('retirement-age').value);
-        const monthlySavings = parseFloat(document.getElementById('monthly-savings').value);
-        const passiveIncome = parseFloat(document.getElementById('passive-income').value);
-
-        // Validate inputs
-        if (
-            isNaN(currentAge) || isNaN(currentSavings) || isNaN(expectedSavings) ||
-            isNaN(retirementAge) || isNaN(monthlySavings) || isNaN(passiveIncome) ||
-            currentAge < 0 || currentSavings < 0 || expectedSavings < 0 ||
-            retirementAge < 0 || monthlySavings < 0 || passiveIncome < 0
-        ) {
-            alert('Please enter valid numbers for all fields.');
-            return;
-        }
-
-        // Calculate retirement plan
-        const retirementPlan = calculateRetirementPlan(currentAge, currentSavings, expectedSavings, retirementAge, monthlySavings, passiveIncome);
-
-        // Display results
-        displayResults(retirementPlan);
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateToPage(link.getAttribute('href'));
+        });
     });
 
-    function calculateRetirementPlan(currentAge, currentSavings, expectedSavings, retirementAge, monthlySavings, passiveIncome) {
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Show loading spinner
+        const spinner = document.createElement('div');
+        spinner.className = 'loading-spinner';
+        
+        // Clear previous results but keep container structure
+        retirementCharts.innerHTML = '';
+        retirementDetails.innerHTML = '';
+        retirementResults.appendChild(spinner);
+
+        setTimeout(() => {
+            // Get and validate inputs
+            const inputs = {
+                currentAge: parseFloat(document.getElementById('current-age').value),
+                currentSavings: parseFloat(document.getElementById('current-savings').value),
+                expectedSavings: parseFloat(document.getElementById('expected-savings').value),
+                retirementAge: parseFloat(document.getElementById('retirement-age').value),
+                monthlySavings: parseFloat(document.getElementById('monthly-savings').value),
+                passiveIncome: parseFloat(document.getElementById('passive-income').value)
+            };
+
+            if (Object.values(inputs).some(v => isNaN(v) || v < 0)) {
+                alert('Please enter valid numbers for all fields.');
+                return;
+            }
+
+            // Calculate and display results
+            const retirementPlan = calculateRetirementPlan(inputs);
+            displayResults(retirementPlan);
+        }, 1000);
+    });
+
+    function calculateRetirementPlan({
+        currentAge,
+        currentSavings,
+        expectedSavings,
+        retirementAge,
+        monthlySavings,
+        passiveIncome
+    }) {
         const yearsToRetirement = retirementAge - currentAge;
-
-        // Calculate total savings at retirement
-        const totalSavingsAtRetirement = currentSavings + (monthlySavings * 12 * yearsToRetirement);
-
-        // Calculate if the user is on track (based on savings at retirement age)
-        const isOnTrack = totalSavingsAtRetirement >= expectedSavings;
-
-        // Calculate savings growth over time (up to retirement age + 10 years)
-        const savingsOverTime = [];
         let savings = currentSavings;
+        const savingsOverTime = [];
+
         for (let i = 0; i <= yearsToRetirement + 10; i++) {
             savingsOverTime.push(savings);
-
-            if (i < yearsToRetirement) {
-                savings += monthlySavings * 12; // Add yearly savings before retirement
-            } else {
-                savings += passiveIncome * 12; // Add passive income after retirement
-            }
+            savings += i < yearsToRetirement ? 
+                monthlySavings * 12 : 
+                passiveIncome * 12;
         }
 
         return {
@@ -62,110 +81,90 @@ document.addEventListener('DOMContentLoaded', function () {
             retirementAge,
             monthlySavings,
             passiveIncome,
-            totalSavingsAtRetirement,
-            isOnTrack,
+            totalSavingsAtRetirement: currentSavings + (monthlySavings * 12 * yearsToRetirement),
+            isOnTrack: currentSavings + (monthlySavings * 12 * yearsToRetirement) >= expectedSavings,
             savingsOverTime,
             yearsToRetirement
         };
     }
 
     function displayResults(retirementPlan) {
-        // Clear previous results
-        retirementCharts.innerHTML = '<canvas id="retirementChart" width="300" height="300"></canvas>'; // Smaller and skinnier graph
-        retirementDetails.innerHTML = '';
-
-        // Display retirement details
-        const detailsHTML = `
-            <h3>📊 Retirement Plan Breakdown</h3>
-            <p><strong>Current Age:</strong> ${retirementPlan.currentAge}</p>
-            <p><strong>Current Savings:</strong> $${retirementPlan.currentSavings.toFixed(2)}</p>
-            <p><strong>Expected Savings:</strong> $${retirementPlan.expectedSavings.toFixed(2)}</p>
-            <p><strong>Retirement Age:</strong> ${retirementPlan.retirementAge}</p>
-            <p><strong>Monthly Savings:</strong> $${retirementPlan.monthlySavings.toFixed(2)}</p>
-            <p><strong>Passive Income:</strong> $${retirementPlan.passiveIncome.toFixed(2)}/month</p>
-            <p><strong>Total Savings at Retirement:</strong> $${retirementPlan.totalSavingsAtRetirement.toFixed(2)}</p>
-            <p><strong>On Track?:</strong> ${retirementPlan.isOnTrack ? '✅ Yes' : '❌ No'}</p>
+        // Clear spinner and rebuild interface
+        retirementResults.innerHTML = `
+            <h2>Your Retirement Plan 📊</h2>
+            <div id="retirement-charts"></div>
+            <div id="retirement-details"></div>
         `;
-        retirementDetails.innerHTML = detailsHTML;
 
-        // Generate line chart
+        // Rebuild chart container
+        const chartsContainer = document.getElementById('retirement-charts');
+        chartsContainer.innerHTML = '<canvas id="retirementChart" width="300" height="300"></canvas>';
+
+        // Chart configuration
         const ctx = document.getElementById('retirementChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: Array.from({ length: retirementPlan.yearsToRetirement + 11 }, (_, i) => retirementPlan.currentAge + i), // X-axis: Age from current to retirement + 10 years
+                labels: Array.from(
+                    { length: retirementPlan.yearsToRetirement + 11 },
+                    (_, i) => retirementPlan.currentAge + i
+                ),
                 datasets: [
                     {
                         label: 'Savings Over Time ($)',
-                        data: retirementPlan.savingsOverTime, // Y-axis: Savings over time
-                        borderColor: '#36A2EB', // Line color
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Fill color
+                        data: retirementPlan.savingsOverTime,
+                        borderColor: '#36A2EB',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         fill: true,
-                        tension: 0.4 // Smooth line
+                        tension: 0.4
                     },
                     {
                         label: 'Expected Savings Goal ($)',
-                        data: Array(retirementPlan.yearsToRetirement + 11).fill(retirementPlan.expectedSavings), // Y-axis: Expected savings goal
-                        borderColor: '#FF6384', // Line color
-                        borderDash: [5, 5], // Dashed line
-                        borderWidth: 2,
-                        fill: false // No fill
+                        data: Array(retirementPlan.yearsToRetirement + 11).fill(retirementPlan.expectedSavings),
+                        borderColor: '#FF6384',
+                        borderDash: [5, 5],
+                        borderWidth: 2
                     }
                 ]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Allow custom sizing
-                layout: {
-                    padding: {
-                        left: 20,
-                        right: 20,
-                        top: 20,
-                        bottom: 20
-                    }
-                },
+                maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: {
-                                size: 14,
-                                family: "'Sono', sans-serif"
-                            }
-                        }
-                    },
+                    legend: { position: 'bottom' },
                     title: {
                         display: true,
                         text: 'Savings Growth Over Time',
-                        font: {
-                            size: 18,
-                            family: "'Sono', sans-serif"
-                        }
+                        font: { family: "'Sono', sans-serif" }
                     }
                 },
                 scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Age',
-                            font: {
-                                size: 14,
-                                family: "'Sono', sans-serif"
-                            }
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Savings ($)',
-                            font: {
-                                size: 14,
-                                family: "'Sono', sans-serif"
-                            }
-                        }
-                    }
+                    x: { title: { display: true, text: 'Age' } },
+                    y: { title: { display: true, text: 'Savings ($)' } }
                 }
             }
         });
+
+        // Details content
+        document.getElementById('retirement-details').innerHTML = `
+            <h3>📊 Retirement Plan Breakdown</h3>
+            ${Object.entries({
+                'Current Age': retirementPlan.currentAge,
+                'Current Savings': `$${retirementPlan.currentSavings.toFixed(2)}`,
+                'Expected Savings': `$${retirementPlan.expectedSavings.toFixed(2)}`,
+                'Retirement Age': retirementPlan.retirementAge,
+                'Monthly Savings': `$${retirementPlan.monthlySavings.toFixed(2)}`,
+                'Passive Income': `$${retirementPlan.passiveIncome.toFixed(2)}/month`,
+                'Total Savings at Retirement': `$${retirementPlan.totalSavingsAtRetirement.toFixed(2)}`,
+                'On Track?': retirementPlan.isOnTrack ? '✅ Yes' : '❌ No'
+            }).map(([key, value]) => `
+                <p><strong>${key}:</strong> ${value}</p>
+            `).join('')}
+        `;
+
+        // Trigger animation
+        setTimeout(() => {
+            retirementResults.classList.add('visible');
+        }, 50);
     }
 });
