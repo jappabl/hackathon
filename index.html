@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,3 +64,70 @@
     <script src="index.js"></script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>penny budget planner!!</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200;400;600&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="style.css">
+        </head>
+<body>
+    <header>
+        <img src="pennylogo.png" alt="Penny Logo" style="width: 232px; height: auto;">
+
+        <nav>
+            <ul>
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="loan.html">💸 Loans</a></li>
+                <li><a href="retirement.html">🏖️ Retirement</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="user-input">
+        <h2>Input Your Financial Information</h2>
+        <form id="financial-info">
+            <label for="monthly-income">Monthly Income:</label>
+            <input type="number" id="monthly-income" name="monthly-income" required>
+            
+            <h3>Monthly Expenses</h3>
+            <label for="food-costs">🍔 Food Costs:</label>
+            <input type="number" id="food-costs" name="food-costs" required>
+            
+            <label for="rent">🏠 Rent:</label>
+            <input type="number" id="rent" name="rent" required>
+            
+            <label for="transportation">🚗 Transportation:</label>
+            <input type="number" id="transportation" name="transportation" required>
+            
+            <label for="miscellaneous">🎲 Miscellaneous:</label>
+            <input type="number" id="miscellaneous" name="miscellaneous" required>
+            
+            <button type="submit">✨ Calculate Budget ✨</button>
+        </form>
+    </section>
+
+    <section id="results">
+        <h2>Your Budget Plan</h2>
+        <div id="charts">
+            <!-- Charts will be generated here -->
+        </div>
+        <div id="budget-plans">
+            <!-- Budget plans will be displayed here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>💌 Need help? Contact us!</p>
+    </footer>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="index.js"></script>
+</body>
+</html>
+
