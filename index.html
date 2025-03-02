@@ -20,7 +20,7 @@
         </ul>
     </nav>
 
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <a href="#entertainment">🎉 Entertainment</a>
         <a href="#saving">💰 Saving</a>
         <a href="#priorities">✅ Priorities</a>
@@ -50,6 +50,15 @@
         document.getElementById("financial-info").addEventListener("submit", function(event) {
             event.preventDefault();
             alert("Budget calculation will be implemented here.");
+        });
+
+        // Sidebar hover effect
+        const sidebar = document.getElementById("sidebar");
+        sidebar.addEventListener("mouseenter", function() {
+            sidebar.style.left = "0";
+        });
+        sidebar.addEventListener("mouseleave", function() {
+            sidebar.style.left = "-200px";
         });
     </script>
 </body>
