@@ -2,6 +2,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('loan-form');
     const loanResults = document.getElementById('loan-results');
 
+    // Function to handle tab transitions with animations
+    function navigateToPage(url) {
+        document.body.classList.add('fade-out'); // Fade out the current page
+        setTimeout(() => {
+            window.location.href = url; // Navigate to the new page after the fade-out
+        }, 100); // Match the duration of the CSS transition (300ms)
+    }
+
+    // Add event listeners to navigation links
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            const url = link.getAttribute('href'); // Get the target URL
+            navigateToPage(url); // Navigate with animation
+        });
+    });
+
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent form submission
 
@@ -45,10 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function displayResults(monthlyPayment, loanAmount, payoffPeriod) {
+        // Clear previous results
+        loanResults.innerHTML = '';
+
+        // Calculate total payment and total interest
         const totalPayment = monthlyPayment * payoffPeriod;
         const totalInterest = totalPayment - loanAmount;
 
-        const resultsHTML = `
+        // Display loan details
+        const detailsHTML = `
             <h3>📊 Loan Repayment Plan</h3>
             <p><strong>Loan Amount:</strong> $${loanAmount.toFixed(2)}</p>
             <p><strong>Payoff Period:</strong> ${payoffPeriod} months</p>
@@ -56,6 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
             <p><strong>Total Payment:</strong> $${totalPayment.toFixed(2)}</p>
             <p><strong>Total Interest Paid:</strong> $${totalInterest.toFixed(2)}</p>
         `;
-        loanResults.innerHTML = resultsHTML;
+        loanResults.innerHTML = detailsHTML;
+
+        // Animate the results section
+        setTimeout(() => {
+            document.getElementById('loan-results').classList.add('visible');
+        }, 50); // Small delay to ensure the DOM updates
     }
 });
