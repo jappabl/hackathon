@@ -259,6 +259,7 @@ footer {
     font-style: italic; /* Italic text */
     padding-left: 10px; /* Indent the note slightly */
     border-left: 3px solid #7088A4; /* Add a left border for a note-like appearance */
+
 }
 
 /* Animation for tab transitions */
@@ -324,3 +325,6 @@ body.fade-out {
     opacity: 1; /* Fully visible */
     transform: translateY(0); /* Move to original position */
 }
+
+
+
